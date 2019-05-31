@@ -27,6 +27,7 @@ spec:
       containers:
       - name: twirpt
         image: twirpt
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         env:
