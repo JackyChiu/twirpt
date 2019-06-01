@@ -1,21 +1,15 @@
 package main
 
 import (
-	"context"
 	"net/http"
 
-	pb "github.com/JackyChiu/twirpt"
+	hello "github.com/JackyChiu/twirpt/internal/hello_world_server"
+	pb "github.com/JackyChiu/twirpt/rpc/hello_world"
 )
-
-type HelloWorldServer struct{}
-
-func (s *HelloWorldServer) Hello(ctx context.Context, req *pb.HelloReq) (*pb.HelloResp, error) {
-	return &pb.HelloResp{Text: "Hello " + req.Subject}, nil
-}
 
 // Run the implementation in a local server
 func main() {
-	twirpHandler := pb.NewHelloWorldServer(&HelloWorldServer{}, nil)
+	twirpHandler := pb.NewHelloWorldServer(&hello.Server{}, nil)
 	// You can use any mux you like - NewHelloWorldServer gives you an http.Handler.
 	mux := http.NewServeMux()
 	// The generated code includes a method, PathPrefix(), which

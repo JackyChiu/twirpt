@@ -1,6 +1,6 @@
 syntax = "proto3";
-package twirpt;
-option go_package = "twirpt";
+package hello_world;
+option go_package = "hello_world";
 
 service HelloWorld {
   rpc Hello(HelloReq) returns (HelloResp);

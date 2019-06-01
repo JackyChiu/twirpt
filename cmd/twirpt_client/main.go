@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os/exec"
 
-	pb "github.com/JackyChiu/twirpt"
+	pb "github.com/JackyChiu/twirpt/rpc/hello_world"
 )
 
 func main() {
