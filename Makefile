@@ -8,6 +8,7 @@ proto:
 up:
 	minikube start
 	kubectl config use-context minikube
+	kubectl create -f $(KUBE_YAML)
 
 down:
 	minikube stop
@@ -20,7 +21,7 @@ run:
 	kubectl delete deploy $(DEPLOY)
 	kubectl apply -f $(KUBE_YAML)
 
-run-client:
+client:
 	go run cmd/twirpt_client/main.go
 
 all: build run
