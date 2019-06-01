@@ -6,11 +6,12 @@ metadata:
   labels:
     app: twirpt
 spec:
+  type: NodePort
   selector:
     app: twirpt
   ports:
   - port: 8080
-  type: LoadBalancer
+    nodePort: 30000
 
 ---
 apiVersion: extensions/v1beta1
