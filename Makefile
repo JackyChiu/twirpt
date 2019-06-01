@@ -8,7 +8,6 @@ proto:
 up:
 	minikube start
 	kubectl config use-context minikube
-	kubectl create -f $(KUBE_YAML)
 
 down:
 	minikube stop
