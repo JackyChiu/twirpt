@@ -4,6 +4,10 @@ DEPLOY = twirpt
 
 GOPATH := $(GOPATH)
 
+deps:
+	go get -u ./...
+	go mod vendor
+
 proto:
 	protoc --proto_path=$(GOPATH)/src:. --twirp_out=. --go_out=. rpc/**/*.proto
 
@@ -27,4 +31,4 @@ run:
 client:
 	go run cmd/twirpt_client/main.go
 
-all: build run
+all: deps build run
