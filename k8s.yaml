@@ -30,9 +30,8 @@ spec:
       containers:
       - name: twirpt
         image: twirpt
-        # IfNotPresent causes a check for the image locally.
         # Needed because we're using local docker host, instead of registry.
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         env:

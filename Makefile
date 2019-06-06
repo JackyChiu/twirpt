@@ -2,12 +2,8 @@ KUBE_YAML = k8s.yaml
 SERVICE = twirpt
 DEPLOY = twirpt
 
-GOPATH := $(GOPATH)
-
 deps:
-	$(eval export GO111MODULE=on)
-	go get -u ./...
-	go mod vendor
+	GO111MODULE=on go get -u ./...
 
 proto:
 	protoc --proto_path=$(GOPATH)/src:. --twirp_out=. --go_out=. rpc/**/*.proto
@@ -18,14 +14,15 @@ up: deps build
 	kubectl apply -f $(KUBE_YAML)
 
 down:
-	minikube stop
+	minikube delete
 
 build:
-	$(eval $(minikube docker-env))
+	@eval $$(minikube docker-env)
 	go build ./... # validate the Go code before attempting to build the image
 	docker build -t $(DEPLOY) .
 
 run: build
+	@eval $$(minikube docker-env)
 	kubectl delete service $(SERVICE)
 	kubectl delete deploy $(DEPLOY)
 	kubectl apply -f $(KUBE_YAML)
