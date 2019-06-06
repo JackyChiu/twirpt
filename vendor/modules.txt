@@ -1,6 +1,3 @@
-# github.com/JackyChiu/twirpt v0.0.0-20190601192156-6f44c60e0ea7
-github.com/JackyChiu/twirpt/internal/hello_world_server
-github.com/JackyChiu/twirpt/rpc/hello_world
 # github.com/golang/protobuf v1.3.1
 github.com/golang/protobuf/jsonpb
 github.com/golang/protobuf/proto
