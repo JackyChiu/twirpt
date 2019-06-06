@@ -6,6 +6,8 @@ metadata:
   labels:
     app: twirpt
 spec:
+  # Used a NodePort here because the service runs locally through minikube
+  # and needs to be able to be accessed externally.
   type: NodePort
   selector:
     app: twirpt
@@ -28,6 +30,8 @@ spec:
       containers:
       - name: twirpt
         image: twirpt
+        # IfNotPresent causes a check for the image locally.
+        # Needed because we're using local docker host, instead of registry.
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
