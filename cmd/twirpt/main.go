@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 
 	hello "github.com/JackyChiu/twirpt/internal/hello_world_server"
 	pb "github.com/JackyChiu/twirpt/rpc/hello_world"
@@ -15,5 +17,10 @@ func main() {
 	// The generated code includes a method, PathPrefix(), which
 	// can be used to mount your service on a mux.
 	mux.Handle(twirpHandler.PathPrefix(), twirpHandler)
-	http.ListenAndServe(":8080", mux)
+
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
+		panic("no PORT env var set")
+	}
+	http.ListenAndServe(fmt.Sprintf(":%v", port), mux)
 }
